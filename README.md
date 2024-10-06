@@ -1,16 +1,51 @@
-# portafolio
+# Portafolio Personal
 
-A new Flutter project.
+## Descripción
 
-## Getting Started
+Bienvenido a mi portafolio personal, una exhibición interactiva de mis habilidades y proyectos en el ámbito del desarrollo de software. Este portafolio ha sido diseñado con un enfoque en la estética cibernética, presentando una interfaz moderna y atractiva que refleja mi pasión por la tecnología y la innovación.
 
-This project is a starting point for a Flutter application.
+## Características
 
-A few resources to get you started if this is your first Flutter project:
+- **Interfaz Intuitiva**: Navegación fluida y sencilla, optimizada para ofrecer una experiencia de usuario excepcional.
+- **Proyectos Destacados**: Presentación de proyectos significativos, cada uno con descripciones detalladas de las tecnologías utilizadas y el impacto que tuvieron.
+- **Responsivo**: Diseño adaptable que se ve y funciona perfectamente en dispositivos móviles y de escritorio.
+- **Código Limpio y Documentado**: Código bien estructurado y documentado para facilitar la comprensión y mantenimiento.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Tecnologías Utilizadas
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Flutter**: Desarrollo de interfaces de usuario modernas y responsivas.
+- **Dart**: Lenguaje de programación utilizado para construir la aplicación.
+- **HTML/CSS**: Para el diseño de la estructura y el estilo visual de la web.
+- **JavaScript**: Integración de funcionalidades interactivas.
+
+## Instalación
+
+Para ejecutar este proyecto localmente, sigue estos pasos:
+
+1. Clona el repositorio:
+
+```bash
+   git clone https://github.com/SaulSandovalM/Porfolio.git
+```
+
+2. Navega al directorio del proyecto:
+
+```bash
+   cd Portfolio
+```
+
+3. Instala las dependencias:
+
+```bash
+   flutter pub get
+```
+
+4. Ejecuta la aplicación:
+
+```bash
+   flutter run
+```
+
+## Contacto
+
+Si deseas ponerte en contacto conmigo, puedes encontrarme en [LinkedIn](https://www.linkedin.com/in/saul-sandoval-mondrag%C3%B3n-541785158/) o a través de mi [correo electrónico.](mailto:sauldevelop@gmail.com)
