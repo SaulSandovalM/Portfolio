@@ -1,7 +1,7 @@
 List<String> navTitles = [
-  'INICIO',
-  'HABILIDADES',
-  'PROYECTOS',
-  'BLOG',
-  'CONTACTO'
+  'Inicio',
+  'Habilidades',
+  'Proyectos',
+  'Blog',
+  'Contacto'
 ];
