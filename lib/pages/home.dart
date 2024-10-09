@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/constants/colors.dart';
-import 'package:portafolio/constants/nav_items.dart';
+import 'package:portafolio/styles/style.dart';
+import 'package:portafolio/widgets/header_desktop.dart';
+import 'package:portafolio/widgets/site_logo.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,37 +20,20 @@ class _HomeState extends State<Home> {
         scrollDirection: Axis.vertical,
         children: [
           // AppBar
+          // const HeaderDesktop(),
           Container(
-            height: 60,
-            width: double.maxFinite,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [CustomColor.bgDarkOne, CustomColor.bgDarkOne],
-              ),
-            ),
-            child: Row(children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text(
-                  'SaulSandovalM',
-                  style: TextStyle(color: Colors.white),
+            height: 50,
+            margin: const EdgeInsets.fromLTRB(40, 5, 20, 5),
+            decoration: kHeaderDecoration,
+            child: Row(
+              children: [
+                SiteLogo(
+                  onTap: () {},
                 ),
-              ),
-              const Spacer(),
-              for (int i = 0; i < navTitles.length; i++)
-                Padding(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        navTitles[i],
-                        style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: CustomColor.whitePrimary),
-                      ),
-                    ))
-            ]),
+                const Spacer(),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
+              ],
+            ),
           ),
           // Skills
           Container(
