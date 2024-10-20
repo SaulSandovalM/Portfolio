@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portafolio/constants/colors.dart';
-import 'package:portafolio/constants/skills_items.dart';
+
+import '../constants/colors.dart';
+import '../constants/skills_items.dart';
 
 class SkillsMobile extends StatelessWidget {
   const SkillsMobile({super.key});

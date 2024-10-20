@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portafolio/constants/colors.dart';
+
+import '../constants/colors.dart';
 
 class MainMobile extends StatelessWidget {
   const MainMobile({super.key});
