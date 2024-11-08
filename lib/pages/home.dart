@@ -12,7 +12,7 @@ import 'package:portafolio/widgets/main_mobile.dart';
 import 'package:portafolio/widgets/projects_section.dart';
 import 'package:portafolio/widgets/skill_desktop.dart';
 import 'package:portafolio/widgets/skills_mobile.dart';
-import 'dart:js' as js;
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -107,10 +107,15 @@ class _HomeState extends State<Home> {
     });
   }
 
-  void scrollToSection(int navIndex) {
+  void scrollToSection(int navIndex) async {
     if (navIndex == 4) {
-      // open a blog page
-      js.context.callMethod('open', [SnsLinks.blog]);
+      // open a blog page using url_launcher
+      final Uri url = Uri.parse(SnsLinks.blog);
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      } else {
+        throw 'Could not launch $url';
+      }
       return;
     }
 

@@ -10,7 +10,7 @@ class DrawerMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: CustomColor.scaffoldBg,
+      backgroundColor: CustomColor.navBarBg,
       child: ListView(
         children: [
           Align(

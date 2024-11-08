@@ -4,8 +4,6 @@ import 'package:portafolio/widgets/site_logo.dart';
 import '../constants/colors.dart';
 import '../constants/nav_items.dart';
 
-import '../styles/style.dart';
-
 class HeaderDesktop extends StatelessWidget {
   const HeaderDesktop({super.key, required this.onNavMenuTap});
 
@@ -13,17 +11,26 @@ class HeaderDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: double.maxFinite,
-      decoration: kHeaderDecoration,
-      child: Row(children: [
-        SiteLogo(
-          onTap: () {},
+    return Material(
+      elevation: 10.0,
+      shadowColor: Colors.black.withOpacity(0.5),
+      child: Container(
+        height: 60,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          color: CustomColor.navBarBg,
+          border: Border.all(
+            color: CustomColor.navBorder,
+            width: 2.0, // Ancho del borde
+          ),
         ),
-        const Spacer(),
-        for (int i = 0; i < navTitles.length; i++)
-          Padding(
+        child: Row(children: [
+          SiteLogo(
+            onTap: () {},
+          ),
+          const Spacer(),
+          for (int i = 0; i < navTitles.length; i++)
+            Padding(
               padding: const EdgeInsets.only(right: 20),
               child: TextButton(
                 onPressed: () {
@@ -37,8 +44,10 @@ class HeaderDesktop extends StatelessWidget {
                     color: CustomColor.whitePrimary,
                   ),
                 ),
-              ))
-      ]),
+              ),
+            )
+        ]),
+      ),
     );
   }
 }

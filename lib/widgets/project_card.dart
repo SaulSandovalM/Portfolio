@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/utils/project_utils.dart';
 import '../constants/colors.dart';
-import 'dart:js' as js;
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCardWidget extends StatelessWidget {
   const ProjectCardWidget({super.key, required this.project});
@@ -69,22 +69,34 @@ class ProjectCardWidget extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                if (project.webLink != null)
+                if (project.webLink != '' && project.webLink.isNotEmpty)
                   InkWell(
-                    onTap: () {
-                      js.context.callMethod('open', [project.webLink]);
+                    onTap: () async {
+                      final Uri url = Uri.parse(project.webLink);
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url,
+                            mode: LaunchMode.externalApplication);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
                     },
                     child: Image.asset(
                       'assets/link.png',
                       width: 17,
                     ),
                   ),
-                if (project.iosLink != null)
+                if (project.iosLink != '' && project.iosLink.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(left: 6),
                     child: InkWell(
-                      onTap: () {
-                        js.context.callMethod('open', [project.iosLink]);
+                      onTap: () async {
+                        final Uri url = Uri.parse(project.iosLink);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
                       },
                       child: Image.asset(
                         'assets/app-store.png',
@@ -92,12 +104,18 @@ class ProjectCardWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (project.androidLink != null)
+                if (project.androidLink != '' && project.androidLink.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(left: 6),
                     child: InkWell(
-                      onTap: () {
-                        js.context.callMethod('open', [project.androidLink]);
+                      onTap: () async {
+                        final Uri url = Uri.parse(project.androidLink);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url,
+                              mode: LaunchMode.externalApplication);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
                       },
                       child: Image.asset(
                         'assets/play-store.png',

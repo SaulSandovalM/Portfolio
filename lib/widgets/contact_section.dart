@@ -3,7 +3,7 @@ import 'package:portafolio/constants/size.dart';
 import 'package:portafolio/constants/sns_links.dart';
 import 'package:portafolio/widgets/custom_text_field.dart';
 import '../constants/colors.dart';
-import 'dart:js' as js;
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -69,26 +69,46 @@ class ContactSection extends StatelessWidget {
             alignment: WrapAlignment.center,
             children: [
               InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SnsLinks.github]);
+                onTap: () async {
+                  final Uri url = Uri.parse(SnsLinks.github);
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
                 },
                 child: Image.asset('github.png', width: 28),
               ),
               InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SnsLinks.linkedin]);
+                onTap: () async {
+                  final Uri url = Uri.parse(SnsLinks.linkedin);
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
                 },
                 child: Image.asset('linkedin.png', width: 28),
               ),
               InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SnsLinks.facebook]);
+                onTap: () async {
+                  final Uri url = Uri.parse(SnsLinks.facebook);
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
                 },
                 child: Image.asset('facebook.png', width: 28),
               ),
               InkWell(
-                onTap: () {
-                  js.context.callMethod('open', [SnsLinks.instagram]);
+                onTap: () async {
+                  final Uri url = Uri.parse(SnsLinks.instagram);
+                  if (await canLaunchUrl(url)) {
+                    await launchUrl(url, mode: LaunchMode.externalApplication);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
                 },
                 child: Image.asset('instagram.png', width: 28),
               ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/widgets/site_logo.dart';
 
-import '../styles/style.dart';
+import '../constants/colors.dart';
 
 class HeaderMobile extends StatelessWidget {
   const HeaderMobile({super.key, this.onLogoTap, this.onMenuTap});
@@ -13,8 +13,13 @@ class HeaderMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      margin: const EdgeInsets.fromLTRB(40, 5, 20, 5),
-      decoration: kHeaderDecoration,
+      decoration: BoxDecoration(
+        color: CustomColor.navBarBg,
+        border: Border.all(
+          color: CustomColor.navBorder,
+          width: 2.0,
+        ),
+      ),
       child: Row(
         children: [
           SiteLogo(
