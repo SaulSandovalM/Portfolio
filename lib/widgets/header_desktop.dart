@@ -41,7 +41,7 @@ class HeaderDesktop extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: CustomColor.whitePrimary,
+                    color: CustomColor.navText,
                   ),
                 ),
               ),

@@ -15,4 +15,6 @@ class CustomColor {
 
   static const Color navBarBg = Color(0xff2d2527);
   static const Color navBorder = Color(0xff57505f);
+
+  static const Color navText = Color(0xffda7bec);
 }
