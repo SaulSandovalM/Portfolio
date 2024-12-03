@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -52,14 +53,16 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBFqat-GLaifhFWqGZzFZrw81J5TGy588M',
-    appId: '1:1022866193196:web:229d8c78229fdd39db0a89',
-    messagingSenderId: '1022866193196',
-    projectId: 'saulsandovalm-aa0c1',
-    authDomain: 'saulsandovalm-aa0c1.firebaseapp.com',
-    databaseURL: 'https://saulsandovalm-aa0c1-default-rtdb.firebaseio.com',
-    storageBucket: 'saulsandovalm-aa0c1.appspot.com',
-    measurementId: 'G-QK4CYQH5QB',
-  );
+  static FirebaseOptions get web {
+    return FirebaseOptions(
+      apiKey: dotenv.env['FIREBASE_API_KEY'] ?? '',
+      appId: dotenv.env['FIREBASE_APP_ID'] ?? '',
+      messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
+      projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
+      authDomain: dotenv.env['FIREBASE_AUTH_DOMAIN'] ?? '',
+      databaseURL: dotenv.env['FIREBASE_DATABASE_URL'] ?? '',
+      storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'] ?? '',
+      measurementId: dotenv.env['FIREBASE_MEASUREMENT_ID'] ?? '',
+    );
+  }
 }
