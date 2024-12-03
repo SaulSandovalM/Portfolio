@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio/constants/colors.dart';
 
 class SiteLogo extends StatelessWidget {
   const SiteLogo({
@@ -17,7 +18,7 @@ class SiteLogo extends StatelessWidget {
         child: Text(
           'SaulSandovalM',
           style: TextStyle(
-            color: Colors.white,
+            color: CustomColor.navText,
             fontWeight: FontWeight.bold,
           ),
         ),

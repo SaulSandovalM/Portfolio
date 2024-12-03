@@ -3,6 +3,6 @@ import 'package:portafolio/constants/colors.dart';
 
 BoxDecoration kHeaderDecoration = const BoxDecoration(
   gradient: LinearGradient(
-    colors: [CustomColor.bgDarkOne, CustomColor.bgDarkOne],
+    colors: [CustomColor.navBarBg, CustomColor.navBarBg],
   ),
 );

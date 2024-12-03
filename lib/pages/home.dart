@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/constants/colors.dart';
-import 'package:portafolio/styles/style.dart';
+import 'package:portafolio/constants/size.dart';
+import 'package:portafolio/constants/sns_links.dart';
+import 'package:portafolio/widgets/drawer_mobile.dart';
+import 'package:portafolio/widgets/footer.dart';
 import 'package:portafolio/widgets/header_desktop.dart';
-import 'package:portafolio/widgets/site_logo.dart';
+import 'package:portafolio/widgets/header_mobile.dart';
+import 'package:portafolio/widgets/main_desktop.dart';
+import 'package:portafolio/widgets/main_mobile.dart';
+import 'package:portafolio/widgets/skill_desktop.dart';
+import 'package:portafolio/widgets/skills_mobile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,41 +20,109 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollController = ScrollController();
+  final List<GlobalKey> navbarKeys = List.generate(4, (index) => GlobalKey());
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CustomColor.scaffoldBg,
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          // AppBar
-          // const HeaderDesktop(),
-          Container(
-            height: 50,
-            margin: const EdgeInsets.fromLTRB(40, 5, 20, 5),
-            decoration: kHeaderDecoration,
-            child: Row(
-              children: [
-                SiteLogo(
-                  onTap: () {},
+    final screenSize = MediaQuery.of(context).size;
+    final screenWidth = screenSize.width;
+
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        key: scaffoldKey,
+        backgroundColor: CustomColor.scaffoldBg,
+        endDrawer: constraints.maxWidth >= kMinDesktopWidth
+            ? null
+            : DrawerMobile(onNavItemTap: (int navIndex) {
+                scaffoldKey.currentState?.closeEndDrawer();
+                scrollToSection(navIndex);
+              }),
+        body: SingleChildScrollView(
+          controller: scrollController,
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              SizedBox(key: navbarKeys.first),
+              // AppBar
+              if (constraints.maxWidth >= kMinDesktopWidth)
+                HeaderDesktop(
+                  onNavMenuTap: (int navIndex) {
+                    scrollToSection(navIndex);
+                  },
+                )
+              else
+                HeaderMobile(
+                  onLogoTap: () {},
+                  onMenuTap: () {
+                    scaffoldKey.currentState?.openEndDrawer();
+                  },
                 ),
-                const Spacer(),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
-              ],
-            ),
+              // Home
+              if (constraints.maxWidth >= kMinDesktopWidth)
+                const MainDesktop()
+              else
+                const MainMobile(),
+              // Skills
+              Container(
+                key: navbarKeys[1],
+                margin: const EdgeInsets.symmetric(horizontal: 40),
+                width: screenWidth,
+                padding: const EdgeInsets.fromLTRB(0, 20, 25, 60),
+                child: Column(
+                  children: [
+                    const Row(
+                      children: [
+                        Text(
+                          'HABILIDADES',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: CustomColor.whitePrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 50),
+                    if (constraints.maxWidth >= kMedDesktopWidth)
+                      const SkillDesktop()
+                    else
+                      const SkillsMobile()
+                  ],
+                ),
+              ),
+              // const SizedBox(height: 30),
+              // Projects
+              // ProjectsSection(key: navbarKeys[2]),
+              // const SizedBox(height: 30),
+              // Contact
+              // ContactSection(key: navbarKeys[3]),
+              // Footer
+              const Footer()
+            ],
           ),
-          // Skills
-          Container(
-              height: 500, width: double.maxFinite, color: Colors.blueGrey),
-          // Projects
-          const SizedBox(height: 500, width: double.maxFinite),
-          // Contact
-          Container(
-              height: 500, width: double.maxFinite, color: Colors.blueGrey),
-          // Footer
-          const SizedBox(height: 500, width: double.maxFinite)
-        ],
-      ),
+        ),
+      );
+    });
+  }
+
+  void scrollToSection(int navIndex) async {
+    if (navIndex == 4) {
+      // open a blog page using url_launcher
+      final Uri url = Uri.parse(SnsLinks.blog);
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      } else {
+        throw 'Could not launch $url';
+      }
+      return;
+    }
+
+    final key = navbarKeys[navIndex];
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
     );
   }
 }
