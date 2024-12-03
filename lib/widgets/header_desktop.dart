@@ -17,11 +17,13 @@ class HeaderDesktop extends StatelessWidget {
       child: Container(
         height: 60,
         width: double.maxFinite,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: CustomColor.navBarBg,
-          border: Border.all(
-            color: CustomColor.navBorder,
-            width: 2.0, // Ancho del borde
+          border: Border(
+            bottom: BorderSide(
+              color: CustomColor.navBorder, // Color del borde
+              width: 1, // Ancho del borde
+            ),
           ),
         ),
         child: Row(children: [

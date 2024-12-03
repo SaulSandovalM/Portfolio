@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 List<String> navTitles = [
-  'INICIO',
-  'HABILIDADES',
-  'PROYECTOS',
-  'CONTACTO',
-  'BLOG',
+  'Inicio',
+  'Habilidades',
+  'Proyectos',
+  'Contacto',
 ];
 
 List<IconData> navIcons = [
@@ -14,4 +13,15 @@ List<IconData> navIcons = [
   Icons.folder,
   Icons.mail,
   Icons.article,
+];
+
+List<String> languages = [
+  'DART',
+  'REACT',
+  'JAVASCRIPT',
+  'FIREBASE',
+  'PYTHON',
+  'JAVA',
+  'UNITY',
+  'C#'
 ];

@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:portafolio/constants/colors.dart';
 import 'package:portafolio/constants/size.dart';
 import 'package:portafolio/constants/sns_links.dart';
-import 'package:portafolio/widgets/contact_section.dart';
 import 'package:portafolio/widgets/drawer_mobile.dart';
 import 'package:portafolio/widgets/footer.dart';
 import 'package:portafolio/widgets/header_desktop.dart';
 import 'package:portafolio/widgets/header_mobile.dart';
 import 'package:portafolio/widgets/main_desktop.dart';
 import 'package:portafolio/widgets/main_mobile.dart';
-import 'package:portafolio/widgets/projects_section.dart';
 import 'package:portafolio/widgets/skill_desktop.dart';
 import 'package:portafolio/widgets/skills_mobile.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -69,21 +67,22 @@ class _HomeState extends State<Home> {
               // Skills
               Container(
                 key: navbarKeys[1],
+                margin: const EdgeInsets.symmetric(horizontal: 40),
                 width: screenWidth,
-                padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-                color: CustomColor.bgLightOne,
+                padding: const EdgeInsets.fromLTRB(0, 20, 25, 60),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    // title
-                    const Text(
-                      'What i can do',
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: CustomColor.whitePrimary),
+                    const Row(
+                      children: [
+                        Text(
+                          'HABILIDADES',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: CustomColor.whitePrimary,
+                          ),
+                        ),
+                      ],
                     ),
-                    // platform and skills
                     const SizedBox(height: 50),
                     if (constraints.maxWidth >= kMedDesktopWidth)
                       const SkillDesktop()
@@ -92,12 +91,12 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              const SizedBox(height: 30),
+              // const SizedBox(height: 30),
               // Projects
-              ProjectsSection(key: navbarKeys[2]),
-              const SizedBox(height: 30),
+              // ProjectsSection(key: navbarKeys[2]),
+              // const SizedBox(height: 30),
               // Contact
-              ContactSection(key: navbarKeys[3]),
+              // ContactSection(key: navbarKeys[3]),
               // Footer
               const Footer()
             ],
