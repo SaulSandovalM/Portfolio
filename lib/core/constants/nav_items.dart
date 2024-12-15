@@ -8,10 +8,10 @@ List<String> navTitles = [
 ];
 
 List<String> navRoutes = [
-  'Inicio',
-  'Habilidades',
+  '/',
+  '/skills',
   '/projects',
-  'Contacto',
+  '/contact',
 ];
 
 List<IconData> navIcons = [
