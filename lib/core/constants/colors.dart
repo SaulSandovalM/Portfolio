@@ -20,4 +20,6 @@ class CustomColor {
   static const Color navText = Color(0xffeaeaeb);
   static const Color textDesc = Color(0xff988f94);
   static const Color lenguagesList = Color(0xffeaf8ff);
+
+  static const Color backgroundBase = Color(0xff0d1116);
 }

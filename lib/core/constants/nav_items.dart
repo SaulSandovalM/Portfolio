@@ -7,6 +7,13 @@ List<String> navTitles = [
   'Contacto',
 ];
 
+List<String> navRoutes = [
+  'Inicio',
+  'Habilidades',
+  '/projects',
+  'Contacto',
+];
+
 List<IconData> navIcons = [
   Icons.home,
   Icons.code,

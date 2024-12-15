@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portafolio/core/widgets/base.dart';
 import 'package:portafolio/screens/home/widgets/main_desktop.dart';
 
 class Home extends StatefulWidget {
@@ -12,11 +11,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return const Base(
-      backgroundColor: Colors.black,
-      child: Center(
-        child: MainDesktop(),
-      ),
+    return const Center(
+      child: MainDesktop(),
     );
   }
 }

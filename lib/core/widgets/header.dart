@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:portafolio/core/constants/colors.dart';
 import 'package:portafolio/core/constants/nav_items.dart';
 import 'package:portafolio/screens/home/widgets/site_logo.dart';
@@ -32,7 +33,7 @@ class Header extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => context.go(navRoutes[i]),
                 child: Text(
                   navTitles[i],
                   style: const TextStyle(
