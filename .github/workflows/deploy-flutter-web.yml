@@ -7,24 +7,16 @@ on:
 
 jobs:
   build-and-deploy:
-
-    - name: Clear cache
-    run: flutter clean
-
-    name: Build and Deploy Flutter Web
-    runs-on: ubuntu-latest
-
     steps:
-      # Paso 1: Configurar el repositorio
+      # 1. Chequear el repositorio
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Paso 2: Configurar Flutter
-      - name: Setup Flutter
+      # 2. Configurar Flutter
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "stable"
-          channel: stable
 
       # Paso 3: Instalar dependencias
       - name: Install dependencies
