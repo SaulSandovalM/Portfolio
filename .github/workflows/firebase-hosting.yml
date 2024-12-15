@@ -3,7 +3,7 @@ name: Deploy Flutter Web to Firebase Hosting
 on:
   push:
     branches:
-      - main # Ejecutar al hacer push a la rama main
+      - develop # Ejecutar al hacer push a la rama main
 
 jobs:
   build-and-deploy:
