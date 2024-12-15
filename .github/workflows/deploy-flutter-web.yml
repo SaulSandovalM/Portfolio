@@ -7,6 +7,10 @@ on:
 
 jobs:
   build-and-deploy:
+
+    - name: Clear cache
+    run: flutter clean
+
     name: Build and Deploy Flutter Web
     runs-on: ubuntu-latest
 
