@@ -1,6 +1,26 @@
-const List<Map> platformItems = [
-  {'img': 'assets/images/csharp.png', 'title': 'Mobile'},
-  {'img': 'assets/images/csharp.png', 'title': 'Web'},
-  {'img': 'assets/images/csharp.png', 'title': 'Desktop'},
-  {'img': 'assets/images/csharp.png', 'title': 'C#'},
+final List<Map<String, String>> badges = [
+  {
+    'title': 'React',
+    'image': 'assets/images/react.png',
+  },
+  {
+    'title': 'React Native',
+    'image': 'assets/images/react.png',
+  },
+  {
+    'title': 'Unity',
+    'image': 'assets/images/unity.png',
+  },
+  {
+    'title': 'Android Studio',
+    'image': 'assets/images/android.png',
+  },
+  {
+    'title': 'GitHub',
+    'image': 'assets/images/github.png',
+  },
+  {
+    'title': 'Firebase',
+    'image': 'assets/images/firebase.png',
+  }
 ];
