@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 class CustomColor {
-  // static const Color scaffoldBg = Color(0xff0d1116);
   static const Color bgLightOne = Color(0xff333646);
   static const Color bgDarkOne = Color(0xff02040a);
   static const Color textFieldBg = Color(0xffc8c9ce);
@@ -22,4 +21,6 @@ class CustomColor {
   static const Color lenguagesList = Color(0xffeaf8ff);
 
   static const Color backgroundBase = Color(0xff0d1116);
+
+  static const Color projectTitleColor = Color(0xff4493f8);
 }

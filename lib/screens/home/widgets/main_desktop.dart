@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/constants/languages.dart';
+import 'package:portafolio/core/widgets/container.dart';
 
 import '../../../core/constants/colors.dart';
 
@@ -10,9 +11,7 @@ class MainDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      margin: const EdgeInsets.fromLTRB(40, 40, 40, 0),
-      constraints: const BoxConstraints(minHeight: 350),
+    return MainContainer(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
