@@ -1,0 +1,14 @@
+{
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "portafolio-7abd5",
+          "configurations": {
+            "web": "1:897975953098:web:b22996dd737c15c00db633"
+          }
+        }
+      }
+    }
+  }
+}

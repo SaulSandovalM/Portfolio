@@ -10,16 +10,17 @@ class MainProjects extends StatelessWidget {
   Widget build(BuildContext context) {
     return MainContainer(
       child: ListView.separated(
+        padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
         itemCount: projects.length,
         itemBuilder: (context, index) {
           final project = projects[index];
           return Card(
-            color: CustomColor.backgroundBase,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),
             child: Container(
               decoration: const BoxDecoration(
+                color: CustomColor.backgroundBase,
                 border: Border(
                   top: BorderSide(
                     color: CustomColor.navBorder,

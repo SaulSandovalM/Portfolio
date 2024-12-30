@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portafolio/core/constants/colors.dart';
 import 'package:portafolio/core/widgets/header.dart';
+import 'package:portafolio/screens/conferences/view/conferences.dart';
 import 'package:portafolio/screens/contact/view/contact.dart';
+import 'package:portafolio/screens/courses/view/courses.dart';
 import 'package:portafolio/screens/home/view/home.dart';
 import 'package:portafolio/screens/projects/view/projects.dart';
-import 'package:portafolio/screens/skills/view/skills.dart';
 
 final router = GoRouter(
   initialLocation: '/',
@@ -32,8 +33,12 @@ final router = GoRouter(
           builder: (context, state) => const Projects(),
         ),
         GoRoute(
-          path: '/skills',
-          builder: (context, state) => const Skills(),
+          path: '/courses',
+          builder: (context, state) => const Courses(),
+        ),
+        GoRoute(
+          path: '/conferences',
+          builder: (context, state) => const Conferences(),
         ),
         GoRoute(
           path: '/contact',

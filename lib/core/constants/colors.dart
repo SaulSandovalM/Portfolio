@@ -23,4 +23,6 @@ class CustomColor {
   static const Color backgroundBase = Color(0xff0d1116);
 
   static const Color projectTitleColor = Color(0xff4493f8);
+  static const Color textFormColor = Color(0xff1f6feb);
+  static const Color primaryBtn = Color(0xff238636);
 }
