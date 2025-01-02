@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/widgets/container.dart';
-import 'package:portafolio/core/widgets/footer.dart';
 import 'package:portafolio/screens/home/widgets/main_desktop.dart';
 import 'package:portafolio/screens/home/widgets/main_skills.dart';
 
@@ -26,7 +25,6 @@ class Home extends StatelessWidget {
             SizedBox(height: 30),
             MainSkills(),
             SizedBox(height: 30),
-            Footer(),
           ],
         ),
       ),
