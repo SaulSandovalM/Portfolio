@@ -15,6 +15,7 @@ class MainContactState extends State<MainContact> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _messageController = TextEditingController();
+  bool _isSubmitting = false;
 
   @override
   void dispose() {
@@ -25,9 +26,12 @@ class MainContactState extends State<MainContact> {
   }
 
   Future<void> _submitForm() async {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() && !_isSubmitting) {
+      setState(() {
+        _isSubmitting = true;
+      });
       try {
-        await FirebaseFirestore.instance.collection('contacts').add({
+        await FirebaseFirestore.instance.collection('contacto').add({
           'name': _nameController.text,
           'email': _emailController.text,
           'message': _messageController.text,
@@ -35,18 +39,65 @@ class MainContactState extends State<MainContact> {
         });
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Mensaje enviado')),
+            const SnackBar(
+              content: Text(
+                'Mensaje enviado con éxito. ¡Gracias por contactarme!',
+              ),
+            ),
           );
           _formKey.currentState!.reset();
+          _nameController.clear();
+          _emailController.clear();
+          _messageController.clear();
+        }
+      } on FirebaseException catch (e) {
+        String errorMessage = "Error desconocido. Intenta nuevamente.";
+        if (e.code == 'permission-denied') {
+          errorMessage = "No tienes permisos para enviar mensajes.";
+        } else if (e.code == 'unavailable') {
+          errorMessage = "Error. Por favor, inténtalo más tarde.";
+        }
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(errorMessage)),
+          );
         }
       } catch (e) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Error al enviar el mensaje')),
+            const SnackBar(content: Text('Ocurrió un error inesperado.')),
           );
+        }
+      } finally {
+        if (mounted) {
+          setState(() {
+            _isSubmitting = false;
+          });
         }
       }
     }
+  }
+
+  String? _nameValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor ingrese su nombre';
+    }
+    final nameRegex = RegExp(r'^[a-zA-Z\s]+$');
+    if (!nameRegex.hasMatch(value)) {
+      return 'El nombre solo puede contener letras y espacios';
+    }
+    return null;
+  }
+
+  String? _emailValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor ingrese su correo electrónico';
+    }
+    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    if (!emailRegex.hasMatch(value)) {
+      return 'Por favor ingrese un correo electrónico válido';
+    }
+    return null;
   }
 
   @override
@@ -94,12 +145,7 @@ class MainContactState extends State<MainContact> {
                               borderSide: BorderSide(color: Colors.red),
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Por favor ingrese su nombre';
-                            }
-                            return null;
-                          },
+                          validator: _nameValidator,
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
@@ -125,12 +171,7 @@ class MainContactState extends State<MainContact> {
                               borderSide: BorderSide(color: Colors.red),
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Por favor ingrese su correo electrónico';
-                            }
-                            return null;
-                          },
+                          validator: _emailValidator,
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
@@ -176,14 +217,22 @@ class MainContactState extends State<MainContact> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
-                            onPressed: _submitForm,
-                            child: const Text(
-                              'Enviar',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: CustomColor.whitePrimary,
-                              ),
-                            ),
+                            onPressed: _isSubmitting ? null : _submitForm,
+                            child: _isSubmitting
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      color: CustomColor.whitePrimary,
+                                    ),
+                                  )
+                                : const Text(
+                                    'Enviar',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: CustomColor.whitePrimary,
+                                    ),
+                                  ),
                           ),
                         ),
                         const SizedBox(height: 40),
