@@ -81,7 +81,6 @@ class MainCourses extends StatelessWidget {
             ? 1
             : (courses.length < 3 ? courses.length : 3);
         final itemWidth = (constraints.maxWidth - 20) / columns;
-
         return Wrap(
           spacing: 10,
           runSpacing: 10,
