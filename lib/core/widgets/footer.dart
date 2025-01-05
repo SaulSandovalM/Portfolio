@@ -10,6 +10,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
       color: CustomColor.backgroundBase,
       child: Column(
         children: [
@@ -66,7 +67,6 @@ class Footer extends StatelessWidget {
                   ),
                 ],
               ),
-              // Columna 3: Redes sociales
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -101,9 +101,8 @@ class Footer extends StatelessWidget {
             ],
           ),
           const Divider(color: Colors.grey, height: 32),
-          // Derechos reservados
           const Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 40),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
             child: Text(
               '© 2024 Saúl Sandoval. Todos los derechos reservados.',
               style: TextStyle(color: Colors.grey, fontSize: 12),
