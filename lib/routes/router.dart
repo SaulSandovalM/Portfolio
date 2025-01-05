@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portafolio/core/constants/colors.dart';
+import 'package:portafolio/core/widgets/footer.dart';
 import 'package:portafolio/core/widgets/header.dart';
 import 'package:portafolio/screens/conferences/view/conferences.dart';
 import 'package:portafolio/screens/contact/view/contact.dart';
@@ -18,7 +19,16 @@ final router = GoRouter(
           body: Column(
             children: [
               const Header(),
-              Expanded(child: child),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      child,
+                      const Footer(),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         );

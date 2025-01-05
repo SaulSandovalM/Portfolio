@@ -9,24 +9,22 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MainContainer(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 40),
-            MainDesktop(),
-            SizedBox(height: 30),
-            Text(
-              'Habilidades',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 26,
-              ),
+      child: Column(
+        children: [
+          SizedBox(height: 40),
+          MainDesktop(),
+          SizedBox(height: 30),
+          Text(
+            'Habilidades',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 26,
             ),
-            SizedBox(height: 30),
-            MainSkills(),
-            SizedBox(height: 30),
-          ],
-        ),
+          ),
+          SizedBox(height: 30),
+          MainSkills(),
+          SizedBox(height: 30),
+        ],
       ),
     );
   }
