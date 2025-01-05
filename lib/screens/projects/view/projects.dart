@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio/core/widgets/container.dart';
 import 'package:portafolio/screens/projects/widgets/main_projects.dart';
 
 class Projects extends StatelessWidget {
@@ -6,6 +7,13 @@ class Projects extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MainProjects();
+    return const MainContainer(
+      child: Column(
+        children: [
+          SizedBox(height: 40),
+          MainProjects(),
+        ],
+      ),
+    );
   }
 }

@@ -12,52 +12,50 @@ class MainCourses extends StatelessWidget {
       constraints: BoxConstraints(
         minHeight: MediaQuery.of(context).size.height - 60,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Flexible(child: _buildIntroSection(context)),
-                if (MediaQuery.of(context).size.width > 880)
-                  const Expanded(
-                    flex: 1,
-                    child: Text(''),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 40),
-            const Row(
-              children: [
-                Text(
-                  'Cursos',
-                  style: TextStyle(
-                    color: CustomColor.navText,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                  ),
-                  textAlign: TextAlign.start,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Flexible(child: _buildIntroSection(context)),
+              if (MediaQuery.of(context).size.width > 880)
+                const Expanded(
+                  flex: 1,
+                  child: Text(''),
                 ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            const Row(
-              children: [
-                Text(
-                  'Unity',
-                  style: TextStyle(
-                    color: CustomColor.textFormColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                  textAlign: TextAlign.start,
+            ],
+          ),
+          const SizedBox(height: 40),
+          const Row(
+            children: [
+              Text(
+                'Cursos',
+                style: TextStyle(
+                  color: CustomColor.navText,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
                 ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            _buildCourseList(context),
-          ],
-        ),
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
+          const Row(
+            children: [
+              Text(
+                'Unity',
+                style: TextStyle(
+                  color: CustomColor.textFormColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          _buildCourseList(context),
+        ],
       ),
     );
   }

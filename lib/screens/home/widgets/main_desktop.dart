@@ -73,7 +73,7 @@ class MainDesktop extends StatelessWidget {
                 children: [
                   for (int i = 0; i < languagesItems.length; i++)
                     Image.network(
-                      languagesItems[i]['img'],
+                      languagesItems[i]['img']!,
                       width: 30,
                       height: 30,
                       fit: BoxFit.cover,
