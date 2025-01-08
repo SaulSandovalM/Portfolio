@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:portafolio/providers/data_provider.dart';
 import 'package:portafolio/routes/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +14,20 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   usePathUrlStrategy();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        // ChangeNotifierProvider(create: (_) => CourseProvider()),
+        ChangeNotifierProvider(
+          create: (_) => DataProvider<Map<String, dynamic>>(
+            collectionName: 'courses',
+            fromFirestore: (doc) => doc.data() as Map<String, dynamic>,
+          ),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
