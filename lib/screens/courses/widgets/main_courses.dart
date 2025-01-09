@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/constants/colors.dart';
-import 'package:portafolio/providers/data_provider.dart';
+import 'package:portafolio/providers/courses_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,8 +9,7 @@ class MainCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final courseProvider =
-        Provider.of<DataProvider<Map<String, dynamic>>>(context);
+    final courseProvider = Provider.of<CourseProvider>(context);
 
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -76,22 +75,24 @@ class MainCourses extends StatelessWidget {
     );
   }
 
-  Widget _buildCourseList(
-      BuildContext context, DataProvider<Map<String, dynamic>> provider) {
+  Widget _buildCourseList(BuildContext context, CourseProvider provider) {
     return FutureBuilder(
-      // future: provider.fetchCourses(),
-      future: provider.fetchData(),
+      future: provider.fetchCourses(),
       builder: (context, snapshot) {
         if (provider.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
 
-        final courses = provider.items ?? [];
+        final courses = provider.courses ?? [];
         if (courses.isEmpty) {
           return const Center(
             child: Text(
               'No hay cursos disponibles.',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           );
         }
@@ -109,7 +110,6 @@ class MainCourses extends StatelessWidget {
               children: List.generate(
                 courses.length,
                 (index) {
-                  // final course = courses[index].data() as Map<String, dynamic>;
                   final course = courses[index];
 
                   return SizedBox(

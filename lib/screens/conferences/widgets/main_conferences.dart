@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/constants/colors.dart';
+import 'package:portafolio/providers/conferences_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainConferences extends StatelessWidget {
@@ -8,6 +9,8 @@ class MainConferences extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final conferencesProvider = Provider.of<ConferencesProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
       child: Column(
@@ -37,39 +40,26 @@ class MainConferences extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 40),
-          _buildCourseList(context)
+          _buildConferencesList(context, conferencesProvider)
         ],
       ),
     );
   }
 
-  Widget _buildCourseList(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-      future: FirebaseFirestore.instance
-          .collection('conferences')
-          .orderBy('createdAt', descending: false)
-          .get(),
+  Widget _buildConferencesList(
+      BuildContext context, ConferencesProvider provider) {
+    return FutureBuilder(
+      future: provider.fetchConferences(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+        if (provider.isLoading) {
+          return const Center(child: CircularProgressIndicator());
         }
 
-        if (snapshot.hasError) {
-          return const Center(
-            child: Text(
-              'Error al cargar los conferencias.',
-              style: TextStyle(color: Colors.white),
-            ),
-          );
-        }
-
-        final conferences = snapshot.data?.docs ?? [];
+        final conferences = provider.conferences ?? [];
         if (conferences.isEmpty) {
           return const Center(
             child: Text(
-              'No hay conferencias disponibles.',
+              'No hay cursos disponibles.',
               style: TextStyle(color: Colors.white),
             ),
           );

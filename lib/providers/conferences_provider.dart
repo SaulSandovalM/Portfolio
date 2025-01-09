@@ -1,28 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-class CourseProvider with ChangeNotifier {
-  List<QueryDocumentSnapshot>? _courses;
+class ConferencesProvider with ChangeNotifier {
+  List<QueryDocumentSnapshot>? _conferences;
   bool _isLoading = false;
 
-  List<QueryDocumentSnapshot>? get courses => _courses;
+  List<QueryDocumentSnapshot>? get conferences => _conferences;
   bool get isLoading => _isLoading;
 
-  Future<void> fetchCourses() async {
-    if (_courses != null) return; // Evitar recargar si ya tenemos datos
+  Future<void> fetchConferences() async {
+    if (_conferences != null) return;
 
     _isLoading = true;
     notifyListeners();
 
     try {
       final snapshot = await FirebaseFirestore.instance
-          .collection('courses')
+          .collection('conferences')
           .orderBy('createdAt', descending: false)
           .get();
 
-      _courses = snapshot.docs;
+      _conferences = snapshot.docs;
     } catch (e) {
-      _courses = []; // En caso de error, definir como lista vacía
+      _conferences = [];
     } finally {
       _isLoading = false;
       notifyListeners();

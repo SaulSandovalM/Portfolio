@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:portafolio/providers/data_provider.dart';
+import 'package:portafolio/providers/conferences_provider.dart';
+import 'package:portafolio/providers/courses_provider.dart';
 import 'package:portafolio/routes/router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -17,13 +18,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        // ChangeNotifierProvider(create: (_) => CourseProvider()),
-        ChangeNotifierProvider(
-          create: (_) => DataProvider<Map<String, dynamic>>(
-            collectionName: 'courses',
-            fromFirestore: (doc) => doc.data() as Map<String, dynamic>,
-          ),
-        ),
+        ChangeNotifierProvider(create: (_) => CourseProvider()),
+        ChangeNotifierProvider(create: (_) => ConferencesProvider()),
       ],
       child: const MyApp(),
     ),
