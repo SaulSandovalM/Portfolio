@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/widgets/container.dart';
-import 'package:portafolio/screens/projects/widgets/main_projects.dart';
+import 'package:portafolio/screens/courses/widgets/main_courses.dart';
 
-class Projects extends StatelessWidget {
-  const Projects({super.key});
+class Courses extends StatelessWidget {
+  const Courses({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class Projects extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 40),
-          MainProjects(),
+          MainCourses(),
         ],
       ),
     );

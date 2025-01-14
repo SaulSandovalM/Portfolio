@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio/core/widgets/container.dart';
 import 'package:portafolio/screens/home/widgets/main_desktop.dart';
+import 'package:portafolio/screens/home/widgets/main_skills.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: MainDesktop(),
+    return const MainContainer(
+      child: Column(
+        children: [
+          SizedBox(height: 40),
+          MainDesktop(),
+          SizedBox(height: 30),
+          Text(
+            'Habilidades',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 26,
+            ),
+          ),
+          SizedBox(height: 30),
+          MainSkills(),
+          SizedBox(height: 30),
+        ],
+      ),
     );
   }
 }
