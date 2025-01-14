@@ -57,7 +57,7 @@ class MainCourses extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          _buildCourseList(context, courseProvider),
+          _buildCourseList(context, courseProvider, 'Unity'),
         ],
       ),
     );
@@ -65,7 +65,7 @@ class MainCourses extends StatelessWidget {
 
   Widget _buildIntroSection(BuildContext context) {
     return const Text(
-      'La educación es una de las piedras angulares de la innovación...',
+      'La educación es una de las piedras angulares de la innovación. Es por eso que me complace compartir mi experiencia y conocimientos a través de una serie de cursos diseñados para capacitar a futuros profesionales en el mundo del desarrollo y la tecnología.',
       style: TextStyle(
         color: CustomColor.textDesc,
         fontSize: 22,
@@ -75,9 +75,10 @@ class MainCourses extends StatelessWidget {
     );
   }
 
-  Widget _buildCourseList(BuildContext context, CourseProvider provider) {
+  Widget _buildCourseList(
+      BuildContext context, CourseProvider provider, String type) {
     return FutureBuilder(
-      future: provider.fetchCourses(),
+      future: provider.fetchCourses(type: type),
       builder: (context, snapshot) {
         if (provider.isLoading) {
           return const Center(
@@ -85,7 +86,7 @@ class MainCourses extends StatelessWidget {
           );
         }
 
-        final courses = provider.courses ?? [];
+        final courses = provider.getCoursesByType(type) ?? [];
         if (courses.isEmpty) {
           return const Center(
             child: Text(
