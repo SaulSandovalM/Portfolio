@@ -179,10 +179,10 @@ jobs:
 
           fonts:
             - family: Montserrat
-            fonts:
-              - asset: assets/fonts/Montserrat-Regular.ttf
-              - asset: assets/fonts/Montserrat-Italic.ttf
-                style: italic
+              fonts:
+                - asset: assets/fonts/Montserrat-Regular.ttf
+                - asset: assets/fonts/Montserrat-Italic.ttf
+                  style: italic
           EOF
 
       - name: 📦 Install dependencies
