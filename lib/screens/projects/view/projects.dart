@@ -10,7 +10,6 @@ class Projects extends StatelessWidget {
     return const MainContainer(
       child: Column(
         children: [
-          SizedBox(height: 40),
           MainProjects(),
         ],
       ),

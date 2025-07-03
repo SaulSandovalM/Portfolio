@@ -1,28 +1,30 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class CustomColor {
-  static const Color bgLightOne = Color(0xff333646);
-  static const Color bgDarkOne = Color(0xff02040a);
-  static const Color textFieldBg = Color(0xffc8c9ce);
-  static const Color hintDark = Color(0xff666874);
-  static const Color yellowSecondary = Color(0xffffc25c);
-  static const Color yellowPrimary = Color(0xffffaf29);
-  static const Color whitePrimary = Color(0xffffffff);
-  static const Color whiteSecondary = Color(0xffc8c9ce);
+  // Fondo principal (estilo GitHub/dark)
+  static const Color backgroundBase = Color(0xFF0D1117);
+  static const Color backgroundCard = Color(0xFF1C1C1E); // Fondo tarjetas
 
-  // New Colors
-  static const Color scaffoldBg = Color(0xff0d1116);
+  // Colores de texto
+  static const Color textPrimary = Colors.white;
+  static final Color textSecondary = Colors.grey.shade400;
+  static final Color textMuted = Colors.grey.shade600;
 
-  static const Color navBarBg = Color(0xff000000);
-  static const Color navBorder = Color(0xff57505f);
+  // Colores de acento (puede ajustar para estilo cyberpunk si desea)
+  static const Color accent = Colors.deepPurpleAccent;
+  static const Color accentHover = Colors.deepPurple;
 
-  static const Color navText = Color(0xffeaeaeb);
-  static const Color textDesc = Color(0xff988f94);
-  static const Color lenguagesList = Color(0xffeaf8ff);
+  // Botones y bordes
+  static final Color buttonBackground = Colors.deepPurple.withOpacity(0.1);
+  static const Color border = Colors.deepPurpleAccent;
 
-  static const Color backgroundBase = Color(0xff0d1116);
+  // Alternativas cyberpunk (si las quiere después)
+  static const Color cyberGreen = Color(0xFF00FF9C);
+  static const Color neonPink = Color(0xFFFF007F);
+  static const Color terminalBlack = Color(0xFF0B0C10);
 
-  static const Color projectTitleColor = Color(0xff4493f8);
-  static const Color textFormColor = Color(0xff1f6feb);
-  static const Color primaryBtn = Color(0xff238636);
+  // Colores de la nav
+  static const Color navText = Color(0xFFCCCCCC);
+  static const Color navBarBg = backgroundBase;
+  static const Color navBorder = Color(0xFF2C2C2E);
 }
