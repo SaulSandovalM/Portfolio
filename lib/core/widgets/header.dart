@@ -4,47 +4,109 @@ import 'package:portafolio/core/constants/colors.dart';
 import 'package:portafolio/core/constants/nav_items.dart';
 import 'package:portafolio/screens/home/widgets/site_logo.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatefulWidget {
   const Header({super.key});
 
   @override
+  State<Header> createState() => _HeaderState();
+}
+
+class _HeaderState extends State<Header> {
+  bool showMenu = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 10.0,
-      shadowColor: Colors.black.withOpacity(0.5),
-      child: Container(
-        height: 60,
-        width: double.maxFinite,
-        decoration: const BoxDecoration(
-          color: CustomColor.navBarBg,
-          border: Border(
-            bottom: BorderSide(
-              color: CustomColor.navBorder, // Color del borde
-              width: 1, // Ancho del borde
+    final isMobile = MediaQuery.of(context).size.width < 700;
+    final currentRoute = GoRouterState.of(context).uri.toString();
+
+    return Container(
+      decoration: BoxDecoration(
+        color: CustomColor.backgroundBase.withOpacity(0.95),
+        border: const Border(
+          bottom: BorderSide(color: CustomColor.border, width: 0.7),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: CustomColor.accent.withOpacity(0.1),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 64,
+            child: Row(
+              children: [
+                SiteLogo(onTap: () => context.go('/')),
+                const Spacer(),
+                if (!isMobile)
+                  Row(
+                    children: List.generate(navTitles.length, (i) {
+                      final isActive = currentRoute == navRoutes[i];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: GestureDetector(
+                          onTap: () => context.go(navRoutes[i]),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 12),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: isActive
+                                  ? CustomColor.accent.withOpacity(0.1)
+                                  : Colors.transparent,
+                            ),
+                            child: Text(
+                              navTitles[i],
+                              style: TextStyle(
+                                color: isActive
+                                    ? CustomColor.accent
+                                    : CustomColor.navText,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  )
+                else
+                  IconButton(
+                    icon: Icon(
+                      showMenu ? Icons.close : Icons.menu,
+                      color: CustomColor.accent,
+                    ),
+                    onPressed: () => setState(() => showMenu = !showMenu),
+                  ),
+              ],
             ),
           ),
-        ),
-        child: Row(children: [
-          SiteLogo(
-            onTap: () {},
-          ),
-          const Spacer(),
-          for (int i = 0; i < navTitles.length; i++)
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: TextButton(
-                onPressed: () => context.go(navRoutes[i]),
-                child: Text(
-                  navTitles[i],
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: CustomColor.navText,
+          if (isMobile && showMenu)
+            Column(
+              children: List.generate(navTitles.length, (i) {
+                final isActive = currentRoute == navRoutes[i];
+                return ListTile(
+                  title: Text(
+                    navTitles[i],
+                    style: TextStyle(
+                      color:
+                          isActive ? CustomColor.accent : CustomColor.navText,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-              ),
-            )
-        ]),
+                  onTap: () {
+                    setState(() => showMenu = false);
+                    context.go(navRoutes[i]);
+                  },
+                );
+              }),
+            ),
+        ],
       ),
     );
   }

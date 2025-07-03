@@ -1,69 +1,33 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/foundation.dart';
-
-// class CourseProvider with ChangeNotifier {
-//   List<QueryDocumentSnapshot>? _courses;
-//   bool _isLoading = false;
-
-//   List<QueryDocumentSnapshot>? get courses => _courses;
-//   bool get isLoading => _isLoading;
-
-//   Future<void> fetchCourses({String? type}) async {
-//     if (_courses != null) return; // Evitar recargar si ya tenemos datos
-
-//     _isLoading = true;
-//     notifyListeners();
-
-//     try {
-//       final snapshot = await FirebaseFirestore.instance
-//           .collection('courses')
-//           .where('type', isEqualTo: type)
-//           .orderBy('createdAt', descending: false)
-//           .get();
-
-//       _courses = snapshot.docs;
-//     } catch (e) {
-//       _courses = [];
-//     } finally {
-//       _isLoading = false;
-//       notifyListeners();
-//     }
-//   }
-// }
-
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:portafolio/models/course_model.dart';
 
-class CourseProvider with ChangeNotifier {
-  final Map<String, List<QueryDocumentSnapshot>> _coursesByType = {};
-  bool _isLoading = false;
+class CourseProvider extends ChangeNotifier {
+  final List<Course> _courses = [];
+  List<Course> get courses => _courses;
 
-  List<QueryDocumentSnapshot>? getCoursesByType(String type) =>
-      _coursesByType[type];
-  bool get isLoading => _isLoading;
-
-  Future<void> fetchCourses({required String type}) async {
-    if (_coursesByType.containsKey(type)) {
-      return; // Evitar recargar si ya tenemos datos
+  Future<void> loadCourses() async {
+    final query = await FirebaseFirestore.instance.collection('courses').get();
+    _courses.clear();
+    for (var doc in query.docs) {
+      final data = doc.data();
+      _courses.add(
+        Course(
+          title: data['title'],
+          description: data['description'],
+          tech: List<String>.from(data['tech']),
+          coverPath: data['coverPath'],
+          url: data['url'],
+          category: data['category'],
+        ),
+      );
     }
-
-    _isLoading = true;
     notifyListeners();
-
-    try {
-      final snapshot = await FirebaseFirestore.instance
-          .collection('courses')
-          .where('type', isEqualTo: type)
-          .orderBy('createdAt', descending: false)
-          .get();
-
-      _coursesByType[type] = snapshot.docs;
-    } catch (e) {
-      _coursesByType[type] = [];
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
   }
+
+  List<String> get categories =>
+      _courses.map((e) => e.category).toSet().toList();
+
+  List<Course> coursesByCategory(String category) =>
+      _courses.where((e) => e.category == category).toList();
 }

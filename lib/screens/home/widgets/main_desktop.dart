@@ -1,89 +1,197 @@
 import 'package:flutter/material.dart';
-import 'package:portafolio/core/constants/languages.dart';
+import 'package:portafolio/core/widgets/animated_button.dart';
 
-import '../../../core/constants/colors.dart';
-
-class MainDesktop extends StatelessWidget {
+class MainDesktop extends StatefulWidget {
   const MainDesktop({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+  State<MainDesktop> createState() => _MainDesktopState();
+}
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: CustomColor.navBorder,
-              width: 1,
-            ),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.asset(
-              'assets/images/profile.jpg',
-              width: screenSize.width * 0.3,
-              height: screenSize.width * 0.3 * 1.2,
-              fit: BoxFit.cover,
-            ),
-          ),
+class _MainDesktopState extends State<MainDesktop>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeIn;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 1200),
+      vsync: this,
+    );
+    _fadeIn = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 770;
+    final isMobileMin = MediaQuery.of(context).size.width < 450;
+
+    return FadeTransition(
+      opacity: _fadeIn,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 0.0,
+          vertical: 40,
         ),
-        const SizedBox(width: 30),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'SAUL SANDOVAL MONDRAGON',
-                style: TextStyle(
-                  fontSize: 30,
-                  height: 1.5,
-                  fontWeight: FontWeight.bold,
-                  color: CustomColor.whitePrimary,
-                ),
-              ),
-              const Text(
-                'Software Developer',
-                style: TextStyle(
-                  fontSize: 26,
-                  color: CustomColor.whitePrimary,
-                ),
-              ),
-              const Text(
-                'Arquitecto de código y visionario digital, soy Saúl Sandoval, un desarrollador de software apasionado por trazar puentes entre el presente y el futuro. Mi misión es transformar ideas en realidades digitales a través de soluciones innovadoras y funcionales, siempre guiado por una filosofía que combina arte, precisión y tecnología. En un mundo donde el neón ilumina la oscuridad y los datos son la nueva energía, me especializo en diseñar aplicaciones robustas que no solo operan, sino que inspiran. Con un enfoque en la experiencia del usuario y un compromiso inquebrantable con la excelencia, busco redefinir cómo interactuamos con el ecosistema digital. Bienvenido a mi universo, donde la creatividad y la tecnología convergen para construir el mañana.',
-                style: TextStyle(
-                  color: CustomColor.textDesc,
-                  fontSize: 16,
-                ),
-              ),
-              // const SizedBox(height: 15),
-              // SizedBox(
-              //   width: 250,
-              //   child: ElevatedButton(
-              //     onPressed: () {},
-              //     child: const Text('Get in touch'),
-              //   ),
-              // ),
-              const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: isMobile
+            ? Column(
                 children: [
-                  for (int i = 0; i < languagesItems.length; i++)
-                    Image.network(
-                      languagesItems[i]['img']!,
-                      width: 30,
-                      height: 30,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.asset(
+                      'assets/images/profile.jpg',
+                      width: 150,
+                      height: 150,
                       fit: BoxFit.cover,
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Saúl Sandoval Mondragón',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Desarrollador Fullstack & Tech Visionary',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    '"El código no solo se escribe, se esculpe para el futuro."',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  isMobileMin
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AnimatedButton(
+                              text: 'Descargar CV',
+                              icon: Icons.download,
+                              onTap: () {
+                                // Acción de descarga
+                              },
+                            ),
+                            const SizedBox(height: 20),
+                            AnimatedButton(
+                              text: 'Contáctame',
+                              icon: Icons.mail_outline,
+                              onTap: () {
+                                // Navegar a /contact
+                              },
+                            ),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AnimatedButton(
+                              text: 'Descargar CV',
+                              icon: Icons.download,
+                              onTap: () {
+                                // Acción de descarga
+                              },
+                            ),
+                            const SizedBox(width: 20),
+                            AnimatedButton(
+                              text: 'Contáctame',
+                              icon: Icons.mail_outline,
+                              onTap: () {
+                                // Navegar a /contact
+                              },
+                            ),
+                          ],
+                        )
                 ],
               )
-            ],
-          ),
-        ),
-      ],
+            : Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.asset(
+                      'assets/images/profile.jpg',
+                      width: 180,
+                      height: 180,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(width: 50),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Saúl Sandoval Mondragón',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          'Desarrollador Fullstack & Tech Visionary',
+                          style: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          '"El código no solo se escribe, se esculpe para el futuro."',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        Row(
+                          children: [
+                            AnimatedButton(
+                              text: 'Descargar CV',
+                              icon: Icons.download,
+                              onTap: () {
+                                // Acción de descarga
+                              },
+                            ),
+                            const SizedBox(width: 20),
+                            AnimatedButton(
+                              text: 'Contáctame',
+                              icon: Icons.mail_outline,
+                              onTap: () {
+                                // Navegar a /contact
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+      ),
     );
   }
 }
