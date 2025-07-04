@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/widgets/container.dart';
-import 'package:portafolio/screens/projects/widgets/main_projects.dart';
+import 'package:portafolio/screens/projects/widgets/project_section.dart';
 
 class Projects extends StatelessWidget {
   const Projects({super.key});
@@ -10,7 +10,7 @@ class Projects extends StatelessWidget {
     return const MainContainer(
       child: Column(
         children: [
-          MainProjects(),
+          ProjectSection(),
         ],
       ),
     );

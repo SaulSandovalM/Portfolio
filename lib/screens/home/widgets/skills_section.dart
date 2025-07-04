@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portafolio/core/constants/colors.dart';
+import 'package:portafolio/core/widgets/custom_card.dart';
 
 class SkillsSection extends StatefulWidget {
   const SkillsSection({super.key});
@@ -124,94 +125,25 @@ class _SkillCard extends StatefulWidget {
 }
 
 class _SkillCardState extends State<_SkillCard> {
-  bool _hovered = false;
-  double _x = 0;
-  double _y = 0;
-
-  void _onHover(PointerEvent event, BoxConstraints constraints) {
-    final center = constraints.biggest.center(Offset.zero);
-    final dx = (event.localPosition.dx - center.dx) / center.dx;
-    final dy = (event.localPosition.dy - center.dy) / center.dy;
-
-    setState(() {
-      _x = dy * 10;
-      _y = -dx * 10;
-    });
-  }
-
-  void _onExit(PointerEvent _) {
-    setState(() {
-      _hovered = false;
-      _x = 0;
-      _y = 0;
-    });
-  }
-
-  void _onEnter(PointerEvent _) {
-    setState(() {
-      _hovered = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return MouseRegion(
-          onEnter: _onEnter,
-          onHover: (event) => _onHover(event, constraints),
-          onExit: _onExit,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            decoration: BoxDecoration(
-              color: CustomColor.buttonBackground,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: _hovered
-                    ? CustomColor.accent
-                    : CustomColor.border.withOpacity(0.3),
-              ),
-              boxShadow: _hovered
-                  ? [
-                      BoxShadow(
-                        color: CustomColor.accent.withOpacity(0.4),
-                        blurRadius: 20,
-                        spreadRadius: 2,
-                        offset: const Offset(0, 0),
-                      ),
-                    ]
-                  : [],
+    return CustomCard(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(widget.skill.icon, size: 36, color: CustomColor.accent),
+          const SizedBox(height: 12),
+          Text(
+            widget.skill.label,
+            style: const TextStyle(
+              color: CustomColor.textPrimary,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
             ),
-            child: Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.001)
-                ..rotateX(_x * 0.01745)
-                ..rotateY(_y * 0.01745),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(widget.skill.icon,
-                        size: 36, color: CustomColor.accent),
-                    const SizedBox(height: 12),
-                    Text(
-                      widget.skill.label,
-                      style: const TextStyle(
-                        color: CustomColor.textPrimary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            textAlign: TextAlign.center,
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
