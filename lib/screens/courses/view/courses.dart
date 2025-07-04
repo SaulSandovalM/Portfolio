@@ -38,8 +38,6 @@ class _CoursesState extends State<Courses> {
             ),
           ),
           const SizedBox(height: 32),
-
-          // Secciones por categoría
           for (final category in categories) ...[
             Text(
               category,

@@ -15,7 +15,6 @@ class MainContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(40, 0, 40, 0),
-      // constraints: const BoxConstraints(minHeight: 350),
       decoration: const BoxDecoration(
         color: CustomColor.backgroundBase,
       ),
