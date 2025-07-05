@@ -74,7 +74,7 @@ jobs:
       - name: Delete firebase_options.dart
         run: rm -f lib/firebase_options.dart
 
-      - name: Create new main.dart
+      - name: Create new firebase_options.dart
         run: |
           mkdir -p lib
           cat <<EOF > lib/firebase_options.dart
@@ -174,7 +174,6 @@ jobs:
             uses-material-design: true
 
           assets:
-            - assets/
             - assets/images/
             - assets/files/
 
