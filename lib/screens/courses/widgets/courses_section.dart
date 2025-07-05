@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portafolio/core/constants/colors.dart';
 import 'package:portafolio/core/widgets/custom_card.dart';
 import 'package:portafolio/models/course_model.dart';
-import 'package:portafolio/screens/courses/widgets/course_card.dart';
 import 'package:portafolio/providers/courses_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
