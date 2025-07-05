@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🛠️ Set up Flutter
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.5'
@@ -174,8 +174,9 @@ jobs:
             uses-material-design: true
 
           assets:
-            - assets/
+            - .env
             - assets/images/
+            - assets/files/
 
           fonts:
             - family: Montserrat
