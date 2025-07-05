@@ -74,7 +74,7 @@ jobs:
       - name: Delete firebase_options.dart
         run: rm -f lib/firebase_options.dart
 
-      - name: Create new main.dart
+      - name: Create new firebase_options.dart
         run: |
           mkdir -p lib
           cat <<EOF > lib/firebase_options.dart
@@ -166,7 +166,7 @@ jobs:
 
           dev_dependencies:
             flutter_test:
-                sdk: flutter
+              sdk: flutter
 
             flutter_lints: ^4.0.0
 
@@ -174,7 +174,6 @@ jobs:
             uses-material-design: true
 
           assets:
-            - .env
             - assets/images/
             - assets/files/
 
@@ -185,6 +184,10 @@ jobs:
                 - asset: assets/fonts/Montserrat-Italic.ttf
                   style: italic
           EOF
+
+      - name: Debug assets presence
+        run: |
+          ls -R assets || echo "assets folder not found"
 
       - name: Install dependencies
         run: flutter pub get
