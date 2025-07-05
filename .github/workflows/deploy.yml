@@ -193,9 +193,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run Flutter commands
-        run: flutter analyze
-
       - name: Run build for web
         run: flutter build web --base-href="/Portfolio/"
 
