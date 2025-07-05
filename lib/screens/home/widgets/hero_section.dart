@@ -33,8 +33,7 @@ class _HeroSectionState extends State<HeroSection>
   }
 
   void downloadCV() {
-    debugPrint('Entre');
-    const url = 'assets/cv.pdf';
+    const url = 'assets/files/cv.pdf';
     html.AnchorElement(href: url)
       ..setAttribute('download', 'Saul_Sandoval_CV.pdf')
       ..click();

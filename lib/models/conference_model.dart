@@ -4,7 +4,7 @@ class Conference {
   final String image;
   final String location;
   final String date;
-  final String videoUrl;
+  final String link;
   final String category;
 
   Conference({
@@ -13,7 +13,7 @@ class Conference {
     required this.image,
     required this.location,
     required this.date,
-    required this.videoUrl,
+    required this.link,
     required this.category,
   });
 }
