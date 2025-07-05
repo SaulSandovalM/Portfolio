@@ -186,6 +186,10 @@ jobs:
                   style: italic
           EOF
 
+      - name: Debug assets presence
+        run: |
+          ls -R assets || echo "assets folder not found"
+
       - name: Install dependencies
         run: flutter pub get
 
