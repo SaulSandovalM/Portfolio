@@ -69,7 +69,7 @@ class ConferenceCard extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: TextButton.icon(
                     onPressed: () async {
-                      final uri = Uri.parse(conference.videoUrl);
+                      final uri = Uri.parse(conference.link);
                       if (await canLaunchUrl(uri)) {
                         await launchUrl(uri);
                       }

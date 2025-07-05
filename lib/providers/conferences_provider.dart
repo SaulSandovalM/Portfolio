@@ -20,7 +20,7 @@ class ConferencesProvider extends ChangeNotifier {
           image: data['image'] ?? '',
           location: data['location'] ?? '',
           date: data['date'] ?? '',
-          videoUrl: data['videoUrl'] ?? '',
+          link: data['link'] ?? '',
           category: data['category'] ?? 'General',
         ),
       );
