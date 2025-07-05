@@ -189,7 +189,7 @@ jobs:
         run: flutter pub get
 
       - name: Run build for web
-        run: flutter build web --release
+        run: flutter build web --base-href="/Portafolio/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

@@ -12,13 +12,10 @@ import 'providers/conferences_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Carga de variables de entorno
   await dotenv.load(fileName: ".env");
-  // Inicializa Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // Configura estrategia de URL para web
   usePathUrlStrategy();
   runApp(const MyApp());
 }

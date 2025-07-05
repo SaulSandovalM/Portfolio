@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portafolio/core/constants/colors.dart';
 import 'package:portafolio/core/constants/nav_items.dart';
-import 'package:portafolio/screens/home/widgets/site_logo.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key});
@@ -40,7 +39,19 @@ class _HeaderState extends State<Header> {
             height: 64,
             child: Row(
               children: [
-                SiteLogo(onTap: () => context.go('/')),
+                GestureDetector(
+                  onTap: () => context.go('/'),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'SaulSandovalM',
+                      style: TextStyle(
+                        color: CustomColor.navText,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
                 const Spacer(),
                 if (!isMobile)
                   Row(

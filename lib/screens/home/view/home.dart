@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:portafolio/screens/home/widgets/home_desktop.dart';
-import 'package:portafolio/screens/home/widgets/home_mobile.dart';
-import 'package:portafolio/screens/home/widgets/home_tablet.dart';
+import 'package:portafolio/core/widgets/container.dart';
+import 'package:portafolio/screens/home/widgets/hero_section.dart';
+import 'package:portafolio/screens/home/widgets/skills_section.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
-    if (width < 600) {
-      return const HomeMobile();
-    } else if (width < 770) {
-      return const HomeTablet();
-    } else {
-      return const HomeDesktop();
-    }
+    return const MainContainer(
+      child: Column(
+        children: [
+          HeroSection(),
+          SkillsSection(),
+        ],
+      ),
+    );
   }
 }

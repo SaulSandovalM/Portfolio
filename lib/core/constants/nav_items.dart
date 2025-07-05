@@ -6,7 +6,7 @@ List<String> navTitles = [
   'Proyectos',
   'Cursos',
   'Conferencias',
-  'Contacto',
+  // 'Contacto',
 ];
 
 List<String> navRoutes = [
@@ -14,7 +14,7 @@ List<String> navRoutes = [
   '/projects',
   '/courses',
   '/conferences',
-  '/contact',
+  // '/contact',
 ];
 
 List<IconData> footerIcons = [

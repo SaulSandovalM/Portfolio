@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/constants/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ContactForm extends StatefulWidget {
   const ContactForm({super.key});
@@ -17,24 +18,43 @@ class _ContactFormState extends State<ContactForm> {
 
   bool _sending = false;
 
-  void _submitForm() {
+  void _submitForm() async {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _sending = true);
 
-    // Aquí pondrías el código para enviar a Firestore, correo, etc.
+    try {
+      await FirebaseFirestore.instance.collection('messages').add({
+        'name': _nameCtrl.text.trim(),
+        'email': _emailCtrl.text.trim(),
+        'message': _messageCtrl.text.trim(),
+        'createdAt': Timestamp.now(),
+      });
 
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() => _sending = false);
-      // ignore: use_build_context_synchronously
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Mensaje enviado con éxito')),
+        const SnackBar(
+          content: Text('Mensaje enviado con éxito'),
+          backgroundColor: Colors.green,
+        ),
       );
 
       _nameCtrl.clear();
       _emailCtrl.clear();
       _messageCtrl.clear();
-    });
+    } catch (e) {
+      debugPrint('Error al enviar mensaje: $e');
+
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Hubo un error al enviar tu mensaje'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } finally {
+      setState(() => _sending = false);
+    }
   }
 
   @override

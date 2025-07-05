@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio/core/constants/colors.dart';
-import 'package:portafolio/screens/contact/widgets/contact_form.dart';
+import 'package:portafolio/screens/contact/widgets/contact_card.dart';
+// import 'package:portafolio/screens/contact/widgets/contact_form.dart';
 
 class Contact extends StatelessWidget {
   const Contact({super.key});
@@ -21,7 +22,8 @@ class Contact extends StatelessWidget {
             ),
           ),
           SizedBox(height: 32),
-          ContactForm(),
+          // ContactForm(),
+          ContactCard(),
         ],
       ),
     );

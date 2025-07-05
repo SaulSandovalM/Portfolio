@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomColor {
   // Fondo principal (estilo GitHub/dark)
   static const Color backgroundBase = Color(0xFF0D1117);
-  static const Color backgroundCard = Color(0xFF1C1C1E); // Fondo tarjetas
+  static const Color backgroundCard = Color(0xFF1C1C1E);
 
   // Colores de texto
   static const Color textPrimary = Colors.white;
@@ -27,4 +27,8 @@ class CustomColor {
   static const Color navText = Color(0xFFCCCCCC);
   static const Color navBarBg = backgroundBase;
   static const Color navBorder = Color(0xFF2C2C2E);
+
+  // Colores de wrap
+  static const Color backgroundWrap = Color(0xFF131D2E);
+  static const Color textWrap = Color(0xFF4493f8);
 }

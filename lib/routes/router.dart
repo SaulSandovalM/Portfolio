@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:portafolio/core/constants/colors.dart';
 import 'package:portafolio/core/layout/mobile_scaffold.dart';
 import 'package:portafolio/core/layout/tablet_scaffold.dart';
 import 'package:portafolio/core/layout/desktop_scaffold.dart';
@@ -8,7 +7,7 @@ import 'package:portafolio/screens/home/view/home.dart';
 import 'package:portafolio/screens/projects/view/projects.dart';
 import 'package:portafolio/screens/courses/view/courses.dart';
 import 'package:portafolio/screens/conferences/view/conferences.dart';
-import 'package:portafolio/screens/contact/view/contact.dart';
+// import 'package:portafolio/screens/contact/view/contact.dart';
 
 final router = GoRouter(
   initialLocation: '/',
@@ -51,9 +50,9 @@ final List<GoRoute> _appRoutes = [
     name: 'conferences',
     builder: (context, state) => const Conferences(),
   ),
-  GoRoute(
-    path: '/contact',
-    name: 'contact',
-    builder: (context, state) => const Contact(),
-  ),
+  // GoRoute(
+  //   path: '/contact',
+  //   name: 'contact',
+  //   builder: (context, state) => const Contact(),
+  // ),
 ];
