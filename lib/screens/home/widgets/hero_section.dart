@@ -35,7 +35,7 @@ class _HeroSectionState extends State<HeroSection>
   void downloadCV() {
     final base =
         '${html.window.location.origin}${html.window.location.pathname ?? ''}';
-    final url = '$base/assets/files/cv.pdf';
+    final url = '$base/assets/assets/files/cv.pdf';
     html.AnchorElement(href: url)
       ..setAttribute('download', 'Saul_Sandoval_CV.pdf')
       ..click();
