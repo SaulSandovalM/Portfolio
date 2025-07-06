@@ -79066,7 +79066,7 @@ this.XM()},
 adf(){var s,r=B.G4.gxI(window.location),q=window.location.pathname
 if(q==null)q=""
 s=document.createElement("a")
-s.href=r+q+"/assets/files/cv.pdf"
+s.href=r+q+"/assets/assets/files/cv.pdf"
 s.setAttribute("download","Saul_Sandoval_CV.pdf")
 s.click()},
 H(a){var s,r,q,p=null,o="assets/images/profile.jpg",n="Descargar CV",m="Cont\xe1ctame",l=t.w,k=A.bl(a,p,l).w
